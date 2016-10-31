@@ -5,7 +5,7 @@ class MaxField extends React.Component {
     return(
       <div id="app-header">
         <input id="minimum"
-        placeholder="Minimum"
+        value={this.props.min}
         aria-label="Number guess input"
         onChange={(event) => this.props.setLowRange(event)}
         type="number" />

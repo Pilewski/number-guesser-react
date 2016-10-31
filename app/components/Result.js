@@ -4,7 +4,7 @@ class Result extends React.Component {
   render() {
     return(
       <section className='result'>
-        THIS IS WHERE THE RESULTS ARE GONNA GO
+        {this.props.message}
       </section>
     )
   }
