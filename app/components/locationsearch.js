@@ -1,19 +1,13 @@
 const React = require('react');
 
-class LocationSearch extends React.Component {
-  constructor() {
-    super();
-    this.state = {location: ''};
-  }
-
+class GuessInput extends React.Component {
   render() {
     return(
       <div id="app-header">
-        <h1>Weathrly</h1>
-        <input id="city"
-        placeholder="search location" aria-label="search location"
-        onChange={(event) => this.props.setLocation(event)}
-        type="text" />
+        <input id="number"
+        placeholder="Enter your guess!" aria-label="Number guess input"
+        onChange={(event) => this.props.setNumber(event)}
+        type="number" />
       </div>
     )
   }
@@ -21,4 +15,4 @@ class LocationSearch extends React.Component {
 
 
 
-module.exports = LocationSearch;
+module.exports = GuessInput;
