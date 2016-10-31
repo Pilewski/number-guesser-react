@@ -5,7 +5,7 @@ class ResetButton extends React.Component {
     return(
       <button
         className='guess-btn'
-        onClick={this.props.checkGuess}
+        onClick={this.props.resetGame}
       >
         RESET
       </button>
