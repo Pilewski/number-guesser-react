@@ -7,6 +7,7 @@ class GuessInput extends React.Component {
         <input id="number"
         max='100'
         min='0'
+        value={this.props.number}
         placeholder="Enter your guess!"
         aria-label="Number guess input"
         onChange={(event) => this.props.setGuess(event)}
