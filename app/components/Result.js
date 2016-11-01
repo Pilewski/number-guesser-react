@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Result extends React.Component {
   render() {
     return(
-      <section className='result'>
+      <section id='result'>
         {this.props.message}
       </section>
     )

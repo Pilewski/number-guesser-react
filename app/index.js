@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-const App = require('./container/app');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './container/app';
 
 
 
