@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var assert = require('chai').assert;
-const React = require('react');
+import React, { Component } from 'react';
 const $ = require('jquery');
 const SubmitButton = require('../app/components/submitbutton');
 const ForecastField = require('../app/components/forecastfield');

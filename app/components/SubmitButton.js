@@ -1,4 +1,4 @@
-const React = require('react');
+import React, { Component } from 'react';
 
 class SubmitButton extends React.Component {
   render() {

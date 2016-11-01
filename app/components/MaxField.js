@@ -1,4 +1,4 @@
-const React = require('react');
+import React, { Component } from 'react';
 
 class MaxField extends React.Component {
   render() {
