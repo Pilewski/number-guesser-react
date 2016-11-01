@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 body {
-    background-color: #468966;
-    font-family: 'Roboto', sans-serif;
+    background-color: #24E86E;
+    font-family: 'Shrikhand', cursive;
 }
 h1 {
+    color: #FF2776;
     font-size: 300%;
     text-align: center;
     margin-bottom: 30px;
@@ -14,13 +18,13 @@ h1 {
     height: 380px;
     width: auto;
     border-radius: 50%;
-    background: #FFF0A5;
+    background: #FFFC2A;
     text-align: center;
 }
 #guess {
     width: 50%;
     border-width: 8px;
-    border-color: #FFB03B;
+    border-color: #2785FF;
     box-sizing: border-box;
     position: relative;
     top: -40px;
@@ -29,14 +33,15 @@ h1 {
 #clearbtn,
 #resetbtn,
 #rangebtn {
+    color: white;
     width: 60%;
     margin: 8px auto;
     border-radius: 5%;
-    border-color: #FFB03B;
+    border-color: #2785FF;
     border-width: 8px;
     box-sizing: border-box;
     font-weight: bold;
-    background-color: blanchedalmond;
+    background-color: #FF2776;
     letter-spacing: 2px;
     position: relative;
     top: -40px;
@@ -46,7 +51,7 @@ h1 {
     display: inline-block;
     margin: 8px 0;
     width: 30%;
-    border-color: #FFB03B;
+    border-color: #2785FF;
     border-width: 8px;
     box-sizing: border-box;
     position: relative;
@@ -66,15 +71,15 @@ button {
 .result {
     font-size: 150%;
     text-align: center;
-    text: #8E2800;
+    text: #23D831;
     position: relative;
     top: -35px;
 }
 input:focus {
-  outline-color: #468966;
+  outline-color: #3723CC;
 }
 button:focus {
-  outline-color: #468966;
+  outline-color: #3723CC;
 }
 button:enabled {
   cursor: pointer;
