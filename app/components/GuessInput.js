@@ -1,4 +1,4 @@
-const React = require('react');
+import React, { Component } from 'react';
 
 class GuessInput extends React.Component {
   render() {

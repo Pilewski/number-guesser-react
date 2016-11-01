@@ -1,5 +1,4 @@
-require('../style/reset');
-require('../style/style');
+import '../style/style';
 import React, { Component } from 'react';
 import GuessInput from '../components/GuessInput';
 import SubmitButton from '../components/SubmitButton';
@@ -89,8 +88,8 @@ class App extends React.Component{
       <SubmitButton checkGuess={this.checkGuess.bind(this)}/>
       <ClearButton number={this.state.number} clearInput={this.clearInput.bind(this)}/>
       <ResetButton message={this.state.message} min={this.state.min} max={this.state.max} number={this.state.number} resetGame={this.resetGame.bind(this)}/>
-      <MaxField max={this.state.max} setHighRange={this.setHighRange.bind(this)}/>
       <MinField min={this.state.min} setLowRange={this.setLowRange.bind(this)}/>
+      <MaxField max={this.state.max} setHighRange={this.setHighRange.bind(this)}/>
       <Result message={this.state.message}/>
     </div>
     )
