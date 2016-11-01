@@ -4,7 +4,7 @@ class SubmitButton extends React.Component {
   render() {
     return(
       <button
-        className='guess-btn'
+        id='guessbtn'
         onClick={this.props.checkGuess}
       >
         GUESS

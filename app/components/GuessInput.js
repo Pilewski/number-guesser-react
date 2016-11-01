@@ -3,8 +3,8 @@ const React = require('react');
 class GuessInput extends React.Component {
   render() {
     return(
-      <div id="app-header">
-        <input id="number"
+      <span>
+        <input id="guess"
         max='100'
         min='0'
         value={this.props.number}
@@ -12,7 +12,7 @@ class GuessInput extends React.Component {
         aria-label="Number guess input"
         onChange={(event) => this.props.setGuess(event)}
         type="number" />
-      </div>
+      </span>
     )
   }
 };

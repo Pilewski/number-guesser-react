@@ -4,7 +4,7 @@ class ResetButton extends React.Component {
   render() {
     return(
       <button
-        className='guess-btn'
+        id='resetbtn'
         disabled={!this.props.message}
         onClick={this.props.resetGame}
       >

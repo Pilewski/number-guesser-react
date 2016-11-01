@@ -4,7 +4,7 @@ class ClearButton extends React.Component {
   render() {
     return(
       <button
-        className='guess-btn'
+        id='clearbtn'
         disabled={!this.props.number}
         onClick={this.props.clearInput}
       >
