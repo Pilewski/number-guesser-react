@@ -1,8 +1,13 @@
 require('../style/reset');
 require('../style/style');
-const React = require('react');
-const GuessInput = require('../components/GuessInput');
-const SubmitButton = require('../components/SubmitButton');
+import React, { Component } from 'react';
+import GuessInput from '../components/GuessInput';
+import SubmitButton from '../components/SubmitButton';
+import ClearButton from '../components/ClearButton';
+import ResetButton from '../components/ResetButton';
+import MaxField from '../components/MaxField';
+import MinField from '../components/MinField';
+import Result from '../components/Result';
 
 
 class App extends React.Component{
@@ -10,19 +15,53 @@ class App extends React.Component{
     super();
     this.state = {
       number: '',
-      randomNumber: ''
+      randomNumber: '',
+      min: 0,
+      max: 100,
+      message: ''
     };
   }
-
+  checkGuess() {
+    console.log(this.state);
+    let message;
+    if (this.state.randomNumber === this.state.number){
+      message = <p>Nice work! You guessed {this.state.randomNumber} correctly 😎</p>;
+      this.setState({'message':message});
+      this.correctGuess();
+    } else if (this.state.number < this.state.randomNumber) {
+      message = <p>Sorry! {this.state.number} was too low 😬</p>;
+      this.setState({'message':message});
+    } else if (this.state.number > this.state.randomNumber) {
+      message = <p>Sorry! {this.state.number} was too high 😬</p>;
+      this.setState({'message':message});
+    }
+  }
+  clearInput() {
+    this.setState({number: ''});
+  }
+  resetGame() {
+    this.setState({number: ''});
+    let randomNumber = Math.floor(Math.random()*100+1);
+    localStorage.setItem('randomNumber', randomNumber);
+    this.setState({'randomNumber': randomNumber});
+  }
   setGuess(location){
     let userInput = parseInt(location.target.value);
     this.setState({number: userInput});
   }
-
-  checkGuess() {
-    console.log(yo);
+  setLowRange(location){
+    let userInput = parseInt(location.target.value);
+    this.setState({min: userInput});
   }
 
+  setHighRange(location){
+    let userInput = parseInt(location.target.value);
+    this.setState({max: userInput});
+  }
+  correctGuess(){
+    this.setState({max: this.state.max+10});
+    this.setState({min: this.state.min-10});
+  }
   componentDidMount () {
     let savedNumber = JSON.parse(localStorage.getItem('number'));
     let randomNumber = Math.floor(Math.random()*100+1);
@@ -33,14 +72,17 @@ class App extends React.Component{
       this.setState({'randomNumber': randomNumber});
     }
   }
-
   render(){
-
     return (
     <div>
       <h1> NUMBER GUESSER </h1>
-      <GuessInput setGuess={this.setGuess}/>
-      <SubmitButton checkGuess={this.checkGuess}/>
+      <GuessInput number={this.state.number} setGuess={this.setGuess.bind(this)}/>
+      <SubmitButton checkGuess={this.checkGuess.bind(this)}/>
+      <ClearButton clearInput={this.clearInput.bind(this)}/>
+      <ResetButton resetGame={this.resetGame.bind(this)}/>
+      <MaxField max={this.state.max} setHighRange={this.setHighRange.bind(this)}/>
+      <MinField min={this.state.min} setLowRange={this.setLowRange.bind(this)}/>
+      <Result message={this.state.message}/>
     </div>
     )
   }
