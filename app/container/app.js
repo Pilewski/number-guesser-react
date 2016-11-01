@@ -1,66 +1,91 @@
 require('../style/reset');
 require('../style/style');
-require('../style/weather');
-const React = require('react');
-const $ = require('jquery');
-const SubmitButton = require('../components/submitbutton');
-const ForecastField = require('../components/forecastfield');
-const LocationSearch = require('../components/locationsearch');
+import React, { Component } from 'react';
+import GuessInput from '../components/GuessInput';
+import SubmitButton from '../components/SubmitButton';
+import ClearButton from '../components/ClearButton';
+import ResetButton from '../components/ResetButton';
+import MaxField from '../components/MaxField';
+import MinField from '../components/MinField';
+import Result from '../components/Result';
+
 
 class App extends React.Component{
   constructor(){
     super();
     this.state = {
-      location: '',
-      forecast: []
+      number: '',
+      randomNumber: '',
+      min: 0,
+      max: 100,
+      message: ''
     };
   }
-
-  setLocation(location){
-    let userInput = location.target.value.toLowerCase();
-    this.setState({location: userInput});
-  }
-
-  ajaxRequest() {
-    let userLocation = this.state.location;
-    let locationURL = userLocation.replace(' ','-');
-    if (this.state.location !== ''){
-      $.get('http://weatherly-api.herokuapp.com/api/weather/' + locationURL ,function(success){
-        this.setState({forecast: success});
-        localStorage.setItem('forecast', JSON.stringify(success));
-      }.bind(this));
+  checkGuess() {
+    console.log(this.state);
+    let message;
+    if (this.state.randomNumber === this.state.number){
+      message = <p>Nice work! You guessed {this.state.randomNumber} correctly 😎</p>;
+      this.setState({'message':message});
+      this.correctGuess();
+    } else if (this.state.number < this.state.randomNumber) {
+      message = <p>Sorry! {this.state.number} was too low 😬</p>;
+      this.setState({'message':message});
+    } else if (this.state.number > this.state.randomNumber) {
+      message = <p>Sorry! {this.state.number} was too high 😬</p>;
+      this.setState({'message':message});
     }
   }
+  clearInput() {
+    this.setState({number: ''});
+  }
+  resetGame() {
+    this.setState({number: ''});
+    let randomNumber = Math.floor(Math.random()*100+1);
+    localStorage.setItem('randomNumber', randomNumber);
+    this.setState({'randomNumber': randomNumber});
+  }
+  setGuess(location){
+    let userInput = parseInt(location.target.value);
+    this.setState({number: userInput});
+  }
+  setLowRange(location){
+    let userInput = parseInt(location.target.value);
+    this.setState({min: userInput});
+  }
 
+  setHighRange(location){
+    let userInput = parseInt(location.target.value);
+    this.setState({max: userInput});
+  }
+  correctGuess(){
+    this.setState({max: this.state.max+10});
+    this.setState({min: this.state.min-10});
+  }
   componentDidMount () {
-    let savedLocation = JSON.parse(localStorage.getItem('forecast'));
-    if (savedLocation !== null){
-      this.setState({forecast: savedLocation});
+    let savedNumber = JSON.parse(localStorage.getItem('number'));
+    let randomNumber = Math.floor(Math.random()*100+1);
+    if (savedNumber !== null){
+      this.setState({'randomNumber': savedNumber});
+    } else {
+      localStorage.setItem('randomNumber', randomNumber);
+      this.setState({'randomNumber': randomNumber});
     }
   }
-
   render(){
-    let forecast;
-
-    if (this.state.forecast.length){
-      forecast = <ForecastField data={this.state.forecast}/>;
-    } else {
-      forecast =
-      (<h3> Please enter a valid city to see the forecast </h3>);
-    }
-
     return (
-    <div className="location">
-      <header id="header">
-        <LocationSearch setLocation={(event) => this.setLocation(event)}/>
-        <SubmitButton handleClick={() => this.ajaxRequest()}/>
-      </header>
-      {forecast}
+    <div>
+      <h1> NUMBER GUESSER </h1>
+      <GuessInput number={this.state.number} setGuess={this.setGuess.bind(this)}/>
+      <SubmitButton checkGuess={this.checkGuess.bind(this)}/>
+      <ClearButton clearInput={this.clearInput.bind(this)}/>
+      <ResetButton resetGame={this.resetGame.bind(this)}/>
+      <MaxField max={this.state.max} setHighRange={this.setHighRange.bind(this)}/>
+      <MinField min={this.state.min} setLowRange={this.setLowRange.bind(this)}/>
+      <Result message={this.state.message}/>
     </div>
     )
   }
 };
-
-
 
 module.exports = App;
