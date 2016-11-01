@@ -11,6 +11,7 @@ module.exports = {
   ],
   output: {
     path: __dirname + '/dist',
+    publicPath: '/number-guesser-react/'
     filename: 'index_bundle.js'
   },
   module: {

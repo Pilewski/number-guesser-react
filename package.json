@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
+    "deploy": "gh-pages -d",
     "start": "webpack-dev-server",
     "test": "mocha --require test/helpers/setup.js"
   },
-  "author": "Maia Stone and Alex Pilewski",
+  "author": "Alex Pilewski",
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.1.1",
@@ -25,6 +26,7 @@
     "chai": "^3.5.0",
     "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
+    "gh-pages": "^0.11.0",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "js-dom": "0.0.1",
