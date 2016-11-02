@@ -8,7 +8,6 @@ import MaxField from '../components/MaxField';
 import MinField from '../components/MinField';
 import Result from '../components/Result';
 
-
 class App extends React.Component{
   constructor(){
     super();
@@ -19,6 +18,16 @@ class App extends React.Component{
       max: 100,
       message: ''
     };
+  }
+  componentDidMount () {
+    let savedNumber = JSON.parse(localStorage.getItem('randomNumber'));
+    if (savedNumber !== null){
+      this.setState({'randomNumber': savedNumber});
+    } else {
+      let randomNumber = Math.floor(Math.random()*100+1);
+      localStorage.setItem('randomNumber', randomNumber);
+      this.setState({'randomNumber': randomNumber});
+    }
   }
   checkGuess() {
     let message;
@@ -44,10 +53,9 @@ class App extends React.Component{
     this.setState({number: ''});
   }
   resetGame() {
-    this.setState({number: ''});
     let randomNumber = Math.floor(Math.random()*100+1);
     localStorage.setItem('randomNumber', randomNumber);
-    this.setState({'randomNumber': randomNumber, 'message': '', 'min': 0, 'max': 0});
+    this.setState({number: '', 'randomNumber': randomNumber, 'message': '', 'min': 0, 'max': 0});
   }
   setGuess(location){
     let userInput = parseInt(location.target.value);
@@ -72,16 +80,6 @@ class App extends React.Component{
     localStorage.setItem('randomNumber', randomNumber);
     this.setState({max: this.state.max+10});
     this.setState({min: this.state.min-10});
-  }
-  componentDidMount () {
-    let savedNumber = JSON.parse(localStorage.getItem('number'));
-    let randomNumber = Math.floor(Math.random()*100+1);
-    if (savedNumber !== null){
-      this.setState({'randomNumber': savedNumber});
-    } else {
-      localStorage.setItem('randomNumber', randomNumber);
-      this.setState({'randomNumber': randomNumber});
-    }
   }
   render(){
     return (
