@@ -5,6 +5,7 @@ class MaxField extends React.Component {
     return(
       <span>
         <input id="input-max"
+        className={this.props.glow}
         value={this.props.max}
         aria-label="Number guess input"
         onChange={(event) => this.props.setHighRange(event)}
