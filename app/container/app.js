@@ -22,7 +22,7 @@ class App extends React.Component{
   }
   componentDidMount () {
     let savedNumber = JSON.parse(localStorage.getItem('randomNumber'));
-    if (savedNumber !== null){
+    if (savedNumber !== null && savedNumber > this.state.min && savedNumber < this.state.max){
       this.setState({'randomNumber': savedNumber});
     } else {
       let randomNumber = Math.floor(Math.random()*100+1);
