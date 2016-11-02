@@ -75,7 +75,7 @@ class App extends React.Component{
     this.setState({'randomNumber': randomNumber, max: userInput});
   }
   correctGuess(){
-    let randomNumber = Math.floor(Math.random()*100+1);
+    let randomNumber = Math.floor(Math.random()*(this.state.max - this.state.min) + this.state.min);
     localStorage.setItem('randomNumber', randomNumber);
     this.setState({max: this.state.max+10, min: this.state.min-10, glow: 'glow', 'randomNumber': randomNumber, number: ''});
   }
