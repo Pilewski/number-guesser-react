@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MaxField extends React.Component {
+class MinField extends React.Component {
   render() {
     return(
       <span>
@@ -14,4 +14,4 @@ class MaxField extends React.Component {
   }
 };
 
-module.exports = MaxField;
+module.exports = MinField;
