@@ -55,12 +55,15 @@ class App extends React.Component{
   }
   setLowRange(location){
     let userInput = parseInt(location.target.value);
-    this.setState({min: userInput});
+    let randomNumber = Math.floor(Math.random()*(this.state.max - userInput)+userInput);
+    localStorage.setItem('randomNumber', randomNumber);
+    this.setState({'randomNumber': randomNumber, min: userInput});
   }
-
   setHighRange(location){
     let userInput = parseInt(location.target.value);
-    this.setState({max: userInput});
+    let randomNumber = Math.floor(Math.random()*(userInput - this.state.min)+this.state.min);
+    localStorage.setItem('randomNumber', randomNumber);
+    this.setState({'randomNumber': randomNumber, max: userInput});
   }
   correctGuess(){
     this.setState({number: ''});
