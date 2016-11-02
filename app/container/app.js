@@ -34,20 +34,20 @@ class App extends React.Component{
     let message;
     if (this.state.randomNumber === this.state.number){
       message = <p>Nice work! You guessed {this.state.randomNumber} correctly 😎</p>;
-      this.setState({'message':message});
+      this.setState({'message':message, glow: ''});
       this.correctGuess();
     } else if (this.state.min < this.state.number && this.state.number< this.state.randomNumber) {
       message = <p>Sorry! {this.state.number} was too low 😬</p>;
-      this.setState({'message':message});
+      this.setState({'message':message, glow: ''});
     } else if (this.state.max > this.state.number && this.state.number> this.state.randomNumber) {
       message = <p>Sorry! {this.state.number} was too high 😬</p>;
-      this.setState({'message':message});
+      this.setState({'message':message, glow: ''});
     } else if (isNaN(this.state.number) || this.state.number === '') {
       message = <p>Your guess was not a number!! 😱</p>
-      this.setState({'message':message});
+      this.setState({'message':message, glow: ''});
     } else {
       message = <p>{this.state.number} was not in range!! 😖</p>
-      this.setState({'message':message});
+      this.setState({'message':message, glow: ''});
     }
   }
   clearInput() {
@@ -60,7 +60,7 @@ class App extends React.Component{
   }
   setGuess(location){
     let userInput = parseInt(location.target.value);
-    this.setState({number: userInput, glow: ''});
+    this.setState({number: userInput});
   }
   setLowRange(location){
     let userInput = parseInt(location.target.value);
