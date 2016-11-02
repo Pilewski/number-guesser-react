@@ -23,6 +23,9 @@ h1 {
     background: #FFFC2A;
     text-align: center;
 }
+.glow {
+  animation: glow 1s infinite alternate;
+}
 #guess {
     width: 50%;
     border-width: 8px;
@@ -89,4 +92,13 @@ button {
     &:disabled {
       cursor: not-allowed;
     }
+}
+@keyframes glow {
+        from {text-shadow: none;}
+        to {text-shadow: 0px 0px 50px #FF8300;
+        text-shadow: 0px 0px 40px #FF8300;
+        text-shadow: 0px 0px 30px #FF8300;
+        text-shadow: 0px 0px 20px #FF8300;
+        text-shadow: 0px 0px 10px #FF8300;
+        color: #FF8300;}
 }

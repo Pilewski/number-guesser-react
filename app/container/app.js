@@ -16,7 +16,8 @@ class App extends React.Component{
       randomNumber: '',
       min: 0,
       max: 100,
-      message: ''
+      message: '',
+      glow: ''
     };
   }
   componentDidMount () {
@@ -59,7 +60,7 @@ class App extends React.Component{
   }
   setGuess(location){
     let userInput = parseInt(location.target.value);
-    this.setState({number: userInput});
+    this.setState({number: userInput, glow: ''});
   }
   setLowRange(location){
     let userInput = parseInt(location.target.value);
@@ -74,17 +75,14 @@ class App extends React.Component{
     this.setState({'randomNumber': randomNumber, max: userInput});
   }
   correctGuess(){
-    this.setState({number: ''});
     let randomNumber = Math.floor(Math.random()*100+1);
-    this.setState({'randomNumber': randomNumber});
     localStorage.setItem('randomNumber', randomNumber);
-    this.setState({max: this.state.max+10});
-    this.setState({min: this.state.min-10});
+    this.setState({max: this.state.max+10, min: this.state.min-10, glow: 'glow', 'randomNumber': randomNumber, number: ''});
   }
   render(){
     return (
     <div className='container'>
-      <h1> NUMBER GUESSER </h1>
+      <h1 className={this.state.glow}> NUMBER GUESSER </h1>
       <GuessInput number={this.state.number} setGuess={this.setGuess.bind(this)}/>
       <SubmitButton checkGuess={this.checkGuess.bind(this)}/>
       <ClearButton number={this.state.number} clearInput={this.clearInput.bind(this)}/>
